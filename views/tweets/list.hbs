@@ -1,0 +1,56 @@
+<div class="card border-dark text-dark bg-light mb-3">
+  <div class="card-header">What are you thinking about?</div>
+  <div class="card-body">
+    <form action="/tweets" method="post">
+      <div class="mb-1">
+        <div class="input-group {{#if errors.user }}has-validation{{/if}}">
+          <div class="input-group-text">@</div>
+          <input type="text" class="form-control {{#if errors.user }}is-invalid{{/if}}" name="user"
+            placeholder="Type a user name..." value="{{ tweet.user }}">
+          {{#if errors.user }}
+          <div class="invalid-feedback mb-1">
+            {{ errors.user }}
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="mb-1">
+        <div class="input-group {{#if errors.message }}has-validation{{/if}}">
+          <div class="input-group-text"><i class="fal fa-edit"></i></div>
+          <textarea class="form-control {{#if errors.message }}is-invalid{{/if}}" name="message"
+            rows="3">{{ tweet.message }}</textarea>
+          {{#if errors.message }}
+          <div class="invalid-feedback mb-1">
+            {{ errors.message }}
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="mb-1 d-grid">
+        <button class="btn btn-outline-secondary">Add Tweet</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-12 col-md-3">
+    <form action="/tweets" method="get" class="row g-3">
+      <div class="col-auto">
+        <div class="input-group">
+          <div class="input-group-text">@</div>
+          <input type="text" class="form-control" name="user" placeholder="Type a user name..." value="{{ user }}">
+        </div>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary"><i class="fal fa-search"></i></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{#each tweets as |tweet| }}
+  {{> tweetPanel tweet=tweet }}
+{{/each}}
