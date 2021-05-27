@@ -1,9 +1,9 @@
 // Iteration 3: import tweets data
-const tweets = ('../data/tweets')
+const tweets = require('../data/tweets')
 
 // Iteration 3: list tweets from file
 module.exports.list = (req, res, next) => {
-  res.render('common/list')
+  res.render('tweets/list', {tweets:tweets})
 
   // Order tweets desc by date
 
