@@ -1,15 +1,24 @@
 const path = require('path');
 const express = require('express');
+
 const logger = require('morgan');
+
 
 // Create app server
 const app = express();
 
 // Configure hbs as view engine
+app.set('view engine', 'hbs')
+
 // Iteration 1: setup hbs as view engine
 require('./config/hbs.config');
-
+app.set('views', `${__dirname}/views`);
 // Iteration 5: configure body parser
+
+
+
+
+
 
 // Iteration 2: configure global template vars (res.locals.*)
 
