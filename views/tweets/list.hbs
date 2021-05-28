@@ -1,1 +1,13 @@
-{{{tweets}}}
+<div class="container m-y-5">
+  {{#each tweets as |tweets| }}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{tweets.user}}</h5>
+    <p class="card-text">{{tweets.message}}</p>
+    <p class="card-text">{{tweets.createdAt}}</p>
+  </div>
+</div>
+  </div>
+  {{/each}}
+</div>
+
