@@ -3,12 +3,12 @@ const tweetsData = require('../data/tweets')
 
 // Iteration 3: list tweets from file
 module.exports.list = (req, res, next) => {
-  const tweets = tweetsData.list();
+  //const tweets = tweetsData.list();
   // Order tweets desc by date
-  tweets.sort((tweet1, tweet2) =>{
-    return tweet2.createdAt - tweet1.createdAt
+  tweetsData.sort((tweet1, tweet2) =>{
+    tweet2 - tweet1
   });
-  res.render('tweets/tweets', { tweets });
+  res.render('tweets/tweets');
   
   // Iteration 4: filter tweets by user checking the query param 'name'
 }
