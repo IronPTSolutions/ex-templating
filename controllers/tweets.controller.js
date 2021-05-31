@@ -1,5 +1,6 @@
 // Iteration 3: import tweets data
-const tweetsData = require('../data/tweets')
+const tweetsData = require('../data/tweets');
+const uuid = require('uuid');
 
 // Iteration 3: list tweets from file
 
@@ -34,29 +35,30 @@ module.exports.create = (req, res, next) => {
   const errors = {};
   if (!user) {
     errors.user = 'User is required';
-  }
-  if (!message) {
+  } if (!message) {
     errors.message = 'Message is required';
 
-  }if (Object.keys(errors).length > 0) {
+  } if (Object.keys(errors).length > 0) {
     res.status(400)
       .render('tweets/list', {
        user: user,
        message: message,
-        errors: errors
-      })}
+       errors: errors,
       
-      else{
+      })
+      
+  } else {
 
     tweetsData.push({
-    //id: tweetsData.uuid.v4().toString(),
+    id: uuid.v4().toString(),
     user:user, 
     message:message,
-    createdAt:new Date}
+    createdAt:new Date,
+    fav: false}
 
     
   )};
-  console.log(tweetsData)
+
   res.redirect('/tweets')
 
 }
