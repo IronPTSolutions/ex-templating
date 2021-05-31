@@ -15,6 +15,7 @@ router.get('/tweets', tweets.list)
 
 
 // Iteration 5: link POST '/tweets' with tweets controller create
+router.post('/tweets', tweets.create)
 
 
 // Iteration 6: link POST '/tweets/:id/delete' with tweets controller delete

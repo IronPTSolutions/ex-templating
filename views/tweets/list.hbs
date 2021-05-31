@@ -1,11 +1,12 @@
 <h1 class="text-center">What's going on?</h1>
 
 {{> searchbar}}
+
 {{#each tweets as |tweet|}}
 {{#with tweet}}
 <div class="card my-5">
   <div class="card-header">
-    {{user}}
+    <b>{{user}}</b> says:
   </div>
   <div class="card-body">
     <blockquote class="blockquote mb-0">
@@ -16,3 +17,5 @@
 </div>
 {{/with}}
 {{/each}}
+
+{{> form}}

@@ -1,0 +1,13 @@
+<h3 class="text-center">Say something</h3>
+
+<form action="/tweets" method="POST">
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="{{#if errors.user }} is-invalid {{/if}}" value="{{ note.user }}">Email address</label>
+  <input type="email" class="form-control" name="userform" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3"></textarea>
+   <button type="submit" class="btn btn-primary">Submit your lorem fistrum</button>
+</div>
+</form>

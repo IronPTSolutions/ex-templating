@@ -13,3 +13,6 @@ hbs.registerHelper('active', (options) => {
 })
 
 // Iteration 3: register date helper for tweets
+hbs.registerHelper('setTime', (options) => {
+    return moment.createdAt
+})

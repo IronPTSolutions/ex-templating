@@ -10,7 +10,7 @@ module.exports.list = (req, res, next) => {
  let tweets;
 
  if(user){
-   tweets = tweetsData.filter((tweet) => tweet.user.includes(user))
+   tweets = tweetsData.filter((tweet) => tweet.user.toLowerCase().includes(user))
  } else {
    tweets = tweetsData
  }
@@ -29,6 +29,35 @@ module.exports.list = (req, res, next) => {
 
 // Iteration 5: Create tweet validating body params
 module.exports.create = (req, res, next) => {
+  const user = req.body.userform;  
+  const message = req.body.message;
+  const errors = {};
+  if (!user) {
+    errors.user = 'User is required';
+  }
+  if (!message) {
+    errors.message = 'Message is required';
+
+  }if (Object.keys(errors).length > 0) {
+    res.status(400)
+      .render('tweets/list', {
+       user: user,
+       message: message,
+        errors: errors
+      })}
+      
+      else{
+
+    tweetsData.push({
+    //id: tweetsData.uuid.v4().toString(),
+    user:user, 
+    message:message,
+    createdAt:new Date}
+
+    
+  )};
+  console.log(tweetsData)
+  res.redirect('/tweets')
 
 }
 

@@ -1,8 +1,7 @@
 const path = require('path');
 const express = require('express');
-
 const logger = require('morgan');
-
+const bodyParser = require('body-parser');
 
 // Create app server
 const app = express()
@@ -17,6 +16,8 @@ require('./config/hbs.config')
 app.set('views', `${__dirname}/views` )
 
 // Iteration 5: configure body parser
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
