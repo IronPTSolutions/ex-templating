@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 // Create app server
 const app = express()
-
+app.use(express.static('public'))
 
 // Configure hbs as view engine
 app.set('view engine','hbs')

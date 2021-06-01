@@ -34,14 +34,14 @@ module.exports.create = (req, res, next) => {
   const message = req.body.message;
   const errors = {};
   if (!user) {
-    errors.user = 'User is required';
+    errors.userform = 'User is required';
   } if (!message) {
     errors.message = 'Message is required';
 
-  } if (Object.keys(errors).length > 0) {
-    res.status(400)
-      .render('tweets/list', {
-       user: user,
+  } if (Object.keys(errors).length > 0) {    
+    res.render('tweets/list',  {
+      tweets: tweetsData,
+       userform: user,
        message: message,
        errors: errors,
       
@@ -53,13 +53,14 @@ module.exports.create = (req, res, next) => {
     id: uuid.v4().toString(),
     user:user, 
     message:message,
-    createdAt:new Date,
+    createdAt:new Date(),
     fav: false}
 
     
-  )};
+  ),   res.redirect('/tweets')
+};
 
-  res.redirect('/tweets')
+
 
 }
 
