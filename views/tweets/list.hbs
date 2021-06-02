@@ -1,0 +1,21 @@
+<h1 class="text-center">What's going on?</h1>
+
+{{> searchbar}}
+
+{{#each tweets as |tweet|}}
+{{#with tweet}}
+<div class="card my-5">
+  <div class="card-header">
+    <b>{{user}}</b> says:
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{message}}</p>
+      <footer class="blockquote-footer">Created: <cite title="Source Title">{{setTime createdAt}}</cite></footer>
+    </blockquote>
+  </div>
+</div>
+{{/with}}
+{{/each}}
+
+{{> form}}
