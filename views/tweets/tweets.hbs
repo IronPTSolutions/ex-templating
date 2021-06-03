@@ -1,5 +1,30 @@
-{{#each tweets as |tweet|}}
-    <li>
-        {{tweet.list.id}}
-    </li>
+<form action="/tweets" method="get">
+  <div class="input-group">
+    <div class="form-outline">
+      <input type="search" id="form1" class="form-control" placeholder="Busca al fistro pecador"/>
+    </div>
+    <button type="button" class="btn btn-primary">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+  </div>
+</form>
+
+{{#each tweetsList as |tweet|}}
+    <div class="card-body">
+        <h5 class="card-title">{{tweet.user}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{tweet.createdAt}}</h6>
+        <p class="card-text">{{tweet.message}}</p>
+  </div>
 {{/each}}
+
+<form action="/tweets" method="post">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+    <input type="email" value="{{tweet.user}}" class="form-control" id="exampleFormControlInput1" name="twiter-user" placeholder="name@example.com">
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="twiter-message">{{tweet.message}}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Create Note</button>
+</form>

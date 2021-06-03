@@ -13,6 +13,9 @@ router.get('/', controller.home);
 // Iteration 3: link GET '/tweets' with tweets controller list
 router.get('/tweets', tweets.list);
 // Iteration 4: link POST '/tweets' with tweets controller create
+router.post('/tweets', tweets.create);
+router.get('/tweets/:name', tweets.list)
 // Iteration 5: link POST '/tweets/:id/delete' with tweets controller delete
+
 
 module.exports = router;
