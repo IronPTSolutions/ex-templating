@@ -8,13 +8,21 @@ const app = express();
 // Iteration 1: setup hbs as view engine
 require('./config/hbs.config');
 
-app.use(logger('dev'));
+app.set('view engine', 'hbs');
+app.set('views', `${__dirname}/views`);
 
+app.use(logger('dev'));
+app.use((req, res, next) => {
+  res.locals.currentPath = req.path;
+  next();
+})
 // Iteration 5: configure body parser
 
 // Iteration 2: configure global template vars (res.locals.*)
 
 // Iteration 1: configure router
+const routes = require('./config/routes.config');
+app.use('/', routes);
 
 
 const port = process.env.PORT || 3000;
