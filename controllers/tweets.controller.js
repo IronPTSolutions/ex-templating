@@ -1,10 +1,53 @@
-// Iteration 3: import tweets data
+const Tweet = require("../models/tweet.model");
 
-// Iteration 3: list tweets from file
-// Order tweets desc by date
-// Iteration 4: filter tweets by user checking the query param 'name'
+module.exports.list = (req, res) => {
+  Tweet.find()
+    .then((tweets) => {
+      res.render("tweets/list", { tweets });
+    })
+    .catch();
+};
 
+module.exports.detail = (req, res) => {
+  Tweet.findById(req.params.id)
+    .then((tweet) => {
+      res.render("tweets/detail", { tweet });
+    })
+    .catch();
+};
 
-// Iteration 5: Create tweet validating body params
+module.exports.create = (req, res) => {
+  res.render("tweets/new");
+};
 
-// Iteration 6: find tweet by id path param and delete it if exists
+module.exports.doCreate = (req, res, next) => {
+  Tweet.create(req.body)
+    .then(() => {
+      res.redirect("/tweets");
+    })
+    .catch(next);
+};
+
+module.exports.update = (req, res) => {
+  Tweet.findById(req.params.id)
+    .then((tweet) => {
+      res.render("tweets/edit", { tweet });
+    })
+    .catch();
+};
+
+module.exports.doUpdate = (req, res) => {
+  Tweet.findByIdAndUpdate(req.params.id, req.body)
+    .then((tweet) => {
+      res.redirect("/tweets");
+    })
+    .catch();
+};
+
+module.exports.delete = (req, res) => {
+  Tweet.findByIdAndDelete(req.params.id)
+    .then((tweet) => {
+      res.redirect("/tweets");
+    })
+    .catch();
+};

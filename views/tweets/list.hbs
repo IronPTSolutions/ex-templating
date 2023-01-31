@@ -1,0 +1,17 @@
+<h1>Tweets</h1>
+
+<a class="btn btn-primary" href="/tweets/new">New Tweet</a>
+
+<hr>
+
+{{#each tweets as |tweet|}}
+    <div class="border mb-3 p-2">
+        <p>{{tweet.message}}</p>
+        {{#if tweet.image}}
+            <img width="200" src="{{tweet.image}}"/>
+        {{/if}}
+        <small>@{{tweet.user}}</small>
+        <small>{{tweet.createdAt}}</small>
+        <a href="/tweets/{{tweet.id}}">Detail</a>
+    </div>
+{{/each}}
