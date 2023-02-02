@@ -20,13 +20,15 @@ app.use((req, res, next) => {
   res.locals.currentPath = req.path;
   next();
 });
-// Iteration 5: configure body parser
 
-// Iteration 2: configure global template vars (res.locals.*)
-
-// Iteration 1: configure router
 const routes = require("./config/routes.config");
 app.use("/", routes);
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500);
+  res.send("Ops, ha sucedido un error");
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.info(`App listening at port ${port}`));

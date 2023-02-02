@@ -1,1 +1,7 @@
 <p>{{tweet.message}}</p>
+
+<a href="/tweets/{{tweet.id}}/update" class="btn btn-primary mb-2">EDIT</a>
+
+<form action="/tweets/{{tweet.id}}/delete" method="POST">
+    <button class="btn btn-danger">DELETE</button>
+</form>

@@ -1,0 +1,29 @@
+<h1>Edit Tweet</h1>
+
+<form action="/tweets/{{tweet.id}}" method="POST">
+  <div class="mb-3">
+    <label for="user" class="form-label">user</label>
+    <input value="{{tweet.user}}" name="user" type="text" class="form-control" id="user" />
+  </div>
+
+  <div class="mb-3">    
+    <label for="image" class="form-label">image</label>
+    <img id="image" class="m-2" src="{{tweet.image}}" width="200"/>
+    <input id="image-input" value="{{tweet.image}}" name="image" type="text" class="form-control" id="image" />
+  </div>
+
+  <div class="mb-3">
+    <label for="message" class="form-label">message</label>
+    <textarea name="message" class="form-control" id="message" rows="5">{{tweet.message}}</textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+<script>
+    // EXTRA to learn how to update image on CLIENT SIDE
+    document.getElementById("image-input").onchange = (event) => {
+        const newImage = event.target.value
+        document.getElementById("image").src = newImage
+    }
+</script>
