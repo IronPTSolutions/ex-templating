@@ -11,6 +11,9 @@ router.get("/", common.home);
 router.get("/users/new", users.create);
 router.post("/users", users.doCreate);
 
+router.get("/login", users.login);
+router.post("/login", users.doLogin);
+
 router.get("/tweets", tweets.list);
 router.get("/tweets/new", tweets.create);
 router.post("/tweets", tweets.doCreate);

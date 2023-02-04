@@ -20,11 +20,13 @@ const schema = new mongoose.Schema(
 );
 
 schema.pre("save", function (next) {
-  if (this.isModified("password")) {
+  const user = this;
+
+  if (user.isModified("password")) {
     bcrypt
-      .hash(this.password, 10)
+      .hash(user.password, 10)
       .then((encryptedPassword) => {
-        this.password = encryptedPassword;
+        user.password = encryptedPassword;
         next();
       })
       .catch(next);
