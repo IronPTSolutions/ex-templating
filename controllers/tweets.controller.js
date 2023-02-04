@@ -2,9 +2,20 @@ const Tweet = require("../models/tweet.model");
 const mongoose = require("mongoose");
 
 module.exports.list = (req, res, next) => {
-  Tweet.find()
+  const criteria = {};
+
+  if (req.query.user) {
+    criteria.user = req.query.user;
+  }
+
+  if (req.query.search) {
+    criteria.message = new RegExp(req.query.search);
+  }
+
+  Tweet.find(criteria)
+    .sort({ createdAt: req.query.sort || "desc" })
     .then((tweets) => {
-      res.render("tweets/list", { tweets });
+      res.render("tweets/list", { tweets, query: req.query });
     })
     .catch(next);
 };

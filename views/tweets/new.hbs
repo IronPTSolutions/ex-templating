@@ -9,7 +9,7 @@
 <form action="/tweets" method="POST">
   <div class="mb-3">
     <label for="user" class="form-label">user</label>
-    <input type="email" value="{{tweet.user}}" name="user" type="text" class="form-control {{#if errors.user}}is-invalid{{/if}}" id="user">
+    <input type="text" value="{{tweet.user}}" name="user" type="text" class="form-control {{#if errors.user}}is-invalid{{/if}}" id="user">
     {{#if errors.user}}
       <div class="invalid-feedback">
         {{errors.user.message}}

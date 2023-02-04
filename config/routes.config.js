@@ -1,15 +1,15 @@
 const express = require("express");
 
-// Iteration 1: import common controller
 const common = require("../controllers/common.controller");
-
-// Iteration 3: import tweets controller
 const tweets = require("../controllers/tweets.controller");
+const users = require("../controllers/users.controller");
 
 const router = express.Router();
 
-// Iteration 1: link GET '/' with common controller home
 router.get("/", common.home);
+
+router.get("/users/new", users.create);
+router.post("/users", users.doCreate);
 
 router.get("/tweets", tweets.list);
 router.get("/tweets/new", tweets.create);
