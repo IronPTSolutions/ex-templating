@@ -33,11 +33,7 @@ module.exports.doLogin = (req, res, next) => {
         .compare(req.body.password, user.password)
         .then((ok) => {
           if (ok) {
-            // here we'll use express-session library
-            const sessionId = (Math.random() + 1).toString(36).substring(7); // simple random string
-            sessions[sessionId] = user.id;
-
-            res.set("Set-Cookie", `sessionid=${sessionId}`);
+            req.session.userId = user.id;
             res.redirect("/tweets");
           }
         })
