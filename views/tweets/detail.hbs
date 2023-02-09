@@ -2,8 +2,8 @@
     <a href="/tweets" class="mb-4">Go back</a>
 
     <h5 class="card-title">
-        <a href="/tweets?user={{tweet.user}}">
-            @{{tweet.user}}
+        <a href="/tweets?user={{tweet.user.id}}">
+            @{{tweet.user.name}}
         </a>
     </h5>
 
@@ -19,6 +19,7 @@
             Edit
         </a>
 
+        {{#isOwnedBy tweet currentUser}}
         <form action="/tweets/{{tweet.id}}/delete" method="POST">
             <button class="btn btn-danger btn-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -27,5 +28,6 @@
                 Delete
             </button>
         </form>
+        {{/isOwnedBy}}
     </div>
 </div>

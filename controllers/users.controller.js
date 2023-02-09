@@ -1,6 +1,6 @@
 const User = require("../models/user.model");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 module.exports.create = (req, res) => {
   res.render("users/new");

@@ -17,21 +17,14 @@ app.set("views", `${__dirname}/views`);
 
 app.use(express.urlencoded());
 app.use(logger("dev"));
+
 app.use(session);
 app.use(loadSessionUser);
 
 app.use((req, res, next) => {
   res.locals.currentPath = req.path;
-  req.hola = 'caracola';
   next();
 });
-
-app.use((req, res, next) => {
-  console.log(req.hola);
-  console.log(req.session);
-  console.log(req.user);
-  next();
-})
 
 const routes = require("./config/routes.config");
 app.use("/", routes);
