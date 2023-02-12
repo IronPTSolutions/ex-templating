@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 const express = require("express");
 const logger = require("morgan");
+const createError = require("http-errors");
 
 // Configure DB
 require("./config/db.config");
@@ -29,10 +32,16 @@ app.use((req, res, next) => {
 const routes = require("./config/routes.config");
 app.use("/", routes);
 
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500);
-  res.send("Ops, ha sucedido un error");
+app.use((req, res, next) => {
+  next(createError(404, 'Page not found'))
+})
+
+app.use((error, req, res, next) => {
+  error = !error.status ? createError(500, error) : error;
+  console.error(error);
+
+  res.status(error.status)
+    .render(`errors/${error.status}`, { error });
 });
 
 const port = process.env.PORT || 3000;

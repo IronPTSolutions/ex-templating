@@ -32,11 +32,12 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.doCreate = (req, res, next) => {
+  if (req.file) {
+    req.body.image = req.file.path;
+  }
   req.body.user = req.user.id;
   Tweet.create(req.body)
-    .then(() => {
-      res.redirect("/tweets");
-    })
+    .then(() => res.redirect("/tweets"))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         res.render("tweets/new", { errors: err.errors, tweet: req.body });
