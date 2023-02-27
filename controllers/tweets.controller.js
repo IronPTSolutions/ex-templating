@@ -3,20 +3,33 @@ const User = require('../models/user.model');
 const mongoose = require("mongoose");
 
 module.exports.list = (req, res, next) => {
-  const criteria = {};
+  const { lat, lng, search, user } = req.query;
+  const criterial = {};
 
-  if (req.query.user) {
-    criteria.user = req.query.user;
+  if (user) {
+    criterial.user = user;
   }
 
-  if (req.query.search) {
-    criteria.message = new RegExp(req.query.search);
+  if (search) {
+    criterial.message = new RegExp(search);
   }
 
-  Tweet.find(criteria)
+  if (lat && lng ) {
+    criterial.location = {
+      $near: {
+        $geometry: {
+          type: "Point",
+          coordinates: [lng, lat]
+        },
+        $maxDistance: 7000
+     }
+    }
+  }
+
+  Tweet.find(criterial)
     .populate('user')
     .sort({ createdAt: req.query.sort || "desc" })
-    .then((tweets) => res.render("tweets/list", { tweets, query: req.query }))
+    .then((tweets) => res.render("tweets/list", { tweets }))
     .catch(next);
 };
 
@@ -32,13 +45,26 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.doCreate = (req, res, next) => {
+  const { lat, lng } = req.body;
+  
+  const tweet = req.body;
+  tweet.user = req.user.id;
+  
   if (req.file) {
-    req.body.image = req.file.path;
+    tweet.image = req.file.path;
   }
-  req.body.user = req.user.id;
-  Tweet.create(req.body)
+
+  if (lat && lng) {
+    tweet.location = {
+      type: 'Point',
+      coordinates: [lng, lat]
+    }
+  }
+
+  Tweet.create(tweet)
     .then(() => res.redirect("/tweets"))
     .catch((err) => {
+      console.log(err);
       if (err instanceof mongoose.Error.ValidationError) {
         res.render("tweets/new", { errors: err.errors, tweet: req.body });
       } else {

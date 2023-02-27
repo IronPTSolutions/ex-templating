@@ -18,6 +18,7 @@ const { session, loadSessionUser } = require('./config/session.config');
 app.set("view engine", "hbs");
 app.set("views", `${__dirname}/views`);
 
+app.use(express.static(`${__dirname}/public`));
 app.use(express.urlencoded());
 app.use(logger("dev"));
 
@@ -26,6 +27,8 @@ app.use(loadSessionUser);
 
 app.use((req, res, next) => {
   res.locals.currentPath = req.path;
+  res.locals.googleApiKey = process.env.GOOGLE_API_KEY;
+  res.locals.query = req.query;
   next();
 });
 

@@ -13,6 +13,14 @@
     <input type="file" name="image" class="form-control {{#if errors.image}}is-invalid{{/if}}" id="image">
   </div>
 
+  <div class="input-group mb-3">
+    <label class="input-group-text" for="address"><i class="fa fa-globe"></i></label>
+    <input type="text" name="address" class="form-control g-places-finder {{#if errors.address}}is-invalid{{/if}}" id="address" value="{{tweet.address}}">
+  </div>
+
+  <input type="hidden" name="lat" value="{{tweet.lat}}" />
+  <input type="hidden" name="lng" value="{{tweet.lng}}" />
+ 
   <div class="mb-3">
     <label for="message" class="form-label">message</label>
     <textarea name="message" class="form-control {{#if errors.message}}is-invalid{{/if}}" id="message" rows="5">{{tweet.message}}</textarea>

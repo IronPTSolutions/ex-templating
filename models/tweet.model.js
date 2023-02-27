@@ -14,8 +14,20 @@ const schema = new mongoose.Schema(
     },
     image: { type: String },
     likes: { type: Number, default: 0 },
+    address: String,
+    location: {
+      type: {
+        type: String,
+        enum: ['Point']
+      },
+      coordinates: {
+        type: [Number]
+      }
+    }
   },
   { timestamps: true }
 );
+
+schema.index({ location: '2dsphere' });
 
 module.exports = mongoose.model("Tweet", schema);

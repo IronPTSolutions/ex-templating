@@ -15,6 +15,7 @@ router.post("/users", users.doCreate);
 
 router.get("/login", users.login);
 router.post("/login", users.doLogin);
+router.get("/logout", users.logout);
 
 router.get("/tweets", tweets.list);
 

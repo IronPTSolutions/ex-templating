@@ -35,8 +35,6 @@ module.exports.login = (req, res) => {
   res.render('users/login');
 };
 
-const sessions = {};
-
 module.exports.doLogin = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
@@ -52,3 +50,10 @@ module.exports.doLogin = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  req.session = null;
+  res.redirect('/login');
+}
+

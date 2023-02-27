@@ -14,8 +14,11 @@
 
   {{>navbar}}
 
-  <main class="container">
+  <main class="container pt-4">
     {{{ body }}}
   </main>
+
+  <script src="/js/g-places.js"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key={{googleApiKey}}&libraries=places&callback=initGooglePlaces"></script>
 </body>
 </html>
