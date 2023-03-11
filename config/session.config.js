@@ -6,6 +6,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/twitte
 
 module.exports.session = session({
   secret: process.env.SESSION_SECRET || 'super secret',
+  proxy: process.env.SESSION_SECURE === 'true',
   resave: false,
   saveUninitialized: false,
   cookie: {
