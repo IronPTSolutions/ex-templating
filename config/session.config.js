@@ -8,6 +8,7 @@ module.exports.session = session({
   secret: process.env.SESSION_SECRET || 'super secret',
   resave: false,
   saveUninitialized: false,
+  proxy: process.env.SESSION_SECURE === 'true',
   cookie: {
     httpOnly: true,
     secure: process.env.SESSION_SECURE === 'true'
