@@ -81,4 +81,6 @@ flyctl secrets set GOOGLE_API_KEY='...'
 flyctl deploy
 ```
 
+- Añadir el domonio `https://ex-templating.fly.dev` a la consola de developers de google. 
+
 https://ex-templating.fly.dev/tweets
